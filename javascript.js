@@ -14,25 +14,25 @@ function divide(a, b) {
     return a / b;
 }
 
-let firstNum;
-let secondNum;
-let operator;
+let firstNum = "";
+let secondNum = "";
+let operator = "";
 
 function calculate(operator, firstNum, secondNum) {
     console.log(operator);
     let answer = 0;
-    if (operator === "plus") {
+    if (operator === "+") {
         answer = add(firstNum, secondNum);
-    } else if (operator === "minus") {
+    } else if (operator === "-") {
         answer = subtract(firstNum, secondNum);   
-    } else if (operator === "times") {
+    } else if (operator === "x") {
         answer = multiply(firstNum, secondNum);
-    } else if (operator === "dividedBy") {
+    } else if (operator === "/") {
         answer = divide(firstNum, secondNum);
     }
     // I tried writing this as a switch statement, but couldn't get it to work right
     // I think I must have had the syntax wrong
-    console.log(answer);
+    console.log(`answer = ${answer}`);
     return answer;
 }
 
@@ -61,112 +61,121 @@ const clear = document.querySelector("#clear");
 const keypad = document.querySelector(".keypad");
 
 addition.addEventListener("click", () => {
-    display.textContent = "+";
-    operator = "plus";
+    display.textContent = firstNum + " +";
+    operator = "+";
 });
 subtraction.addEventListener("click", () => {
-    display.textContent = "-";
-    operator = "minus";
+    display.textContent = firstNum + " -";
+    operator = "-";
 });
 multiplication.addEventListener("click", () => {
-    display.textContent = "x";
-    operator = "times";
+    display.textContent = firstNum + " x";
+    operator = "x";
 });
 division.addEventListener("click", () => {
-    display.textContent = "/";
-    operator = "dividedBy";
+    display.textContent = firstNum + " /";
+    operator = "/";
 });
 
 one.addEventListener("click", () => {
-    display.textContent = "1";
-    if (!firstNum) {
-        firstNum = 1;
+    if (operator === "") {
+        firstNum = parseInt(firstNum + "1");
+        display.textContent = firstNum;
     } else {
-        secondNum = 1;
+        secondNum = parseInt(secondNum + "1");
+        display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 two.addEventListener("click", () => {
-    display.textContent = "2";
-    if (!firstNum) {
-        firstNum = 2;
+    if (operator === "") {
+        firstNum = parseInt(firstNum + "2");
+        display.textContent = firstNum;
     } else {
-        secondNum = 2;
+        secondNum = parseInt(secondNum + "2");
+        display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 three.addEventListener("click", () => {
-    display.textContent = "3";
-    if (!firstNum) {
-        firstNum = 3;
+    if (operator === "") {
+        firstNum = parseInt(firstNum + "3");
+        display.textContent = firstNum;
     } else {
-        secondNum = 3;
+        secondNum = parseInt(secondNum + "3");
+        display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 four.addEventListener("click", () => {
-    display.textContent = "4";
-    if (!firstNum) {
-        firstNum = 4;
+    if (operator === "") {
+        firstNum = parseInt(firstNum + "4");
+        display.textContent = firstNum;
     } else {
-        secondNum = 4;
+        secondNum = parseInt(secondNum + "4");
+        display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 five.addEventListener("click", () => {
-    display.textContent = "5";
-    if (!firstNum) {
-        firstNum = 5;
+    if (operator === "") {
+        firstNum = parseInt(firstNum + "5");
+        display.textContent = firstNum;
     } else {
-        secondNum = 5;
+        secondNum = parseInt(secondNum + "5");
+        display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 six.addEventListener("click", () => {
-    display.textContent = "6";
-    if (!firstNum) {
-        firstNum = 6;
+    if (operator === "") {
+        firstNum = parseInt(firstNum + "6");
+        display.textContent = firstNum;
     } else {
-        secondNum = 6;
+        secondNum = parseInt(secondNum + "6");
+        display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 seven.addEventListener("click", () => {
-    display.textContent = "7";
-    if (!firstNum) {
-        firstNum = 7;
+    if (operator === "") {
+        firstNum = parseInt(firstNum + "7");
+        display.textContent = firstNum;
     } else {
-        secondNum = 7;
+        secondNum = parseInt(secondNum + "7");
+        display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 eight.addEventListener("click", () => {
-    display.textContent = "8";
-    if (!firstNum) {
-        firstNum = 8;
+    if (operator === "") {
+        firstNum = parseInt(firstNum + "8");
+        display.textContent = firstNum;
     } else {
-        secondNum = 8;
+        secondNum = parseInt(secondNum + "8");
+        display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 nine.addEventListener("click", () => {
-    display.textContent = "9";
-    if (!firstNum) {
-        firstNum = 9;
+    if (operator === "") {
+        firstNum = parseInt(firstNum + "9");
+        display.textContent = firstNum;
     } else {
-        secondNum = 9;
+        secondNum = parseInt(secondNum + "9");
+        display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 zero.addEventListener("click", () => {
-    display.textContent = "0";
-    if (!firstNum) {
-        firstNum = 0;
+    if (operator === "") {
+        firstNum = parseInt(firstNum + "0");
+        display.textContent = firstNum;
     } else {
-        secondNum = 0;
+        secondNum = parseInt(secondNum + "0");
+        display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 
 equals.addEventListener("click", () => {
-    display.textContent = `${calculate(operator, firstNum, secondNum)}`;
-    // also, my calculator only works with single digits for now
-    // might need to add numbers to an array, then join or use concat 
-    // for multiple digits
-    // console.log(calculate(operator, firstNum, secondNum))
-    console.log(firstNum);
-    console.log(secondNum);
-    console.log(typeof operator);
+    const answer = calculate(operator, firstNum, secondNum);
+    display.textContent = answer;
+    firstNum = answer;
+    secondNum = "";
+    console.log(`firstNum type: ${typeof firstNum}, firstNum value: ${firstNum}`);
+    console.log(`secondNum type: ${typeof secondNum}, secondNum value: ${secondNum}`);
+    console.log(`typeof operator = ${typeof operator}`);
 })
 
 clear.addEventListener("click", () => {
@@ -199,9 +208,7 @@ keypad.addEventListener("mouseup", (event) => {
 
 // To Do:
 // - round decimals to 2 places
-// - create a way for multi-digit numbers (concat or arrays?)
 // - allow chaining operations (e.g., 12 + 7 - 5 = 14)
-// - show all the operation on the display
 // - what to do if press = early? 
 //     - single number = single number
 //     - number and operator = nothing?
