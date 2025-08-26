@@ -55,7 +55,7 @@
     flex-grow: 1;
 }
 
-#clear {
+.clear {
     text-align: center;
     box-sizing: border-box;
     font-weight: 700;
@@ -67,4 +67,12 @@
     border: 5px, brown, solid;
     margin: auto;
     flex-grow: 1;
+}
+
+.hover {
+    background-color: rgb(211, 166, 110);
+}
+
+.mousedown {
+    background-color: rgb(147, 102, 47);
 }

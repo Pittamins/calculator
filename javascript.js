@@ -58,6 +58,8 @@ const display = document.querySelector(".display");
 
 const clear = document.querySelector("#clear");
 
+const keypad = document.querySelector(".keypad");
+
 addition.addEventListener("click", () => {
     display.textContent = "+";
     operator = "plus";
@@ -173,3 +175,40 @@ clear.addEventListener("click", () => {
     operator = "";
     display.textContent = "0";
 })
+
+const buttons = document.querySelectorAll("button");
+
+keypad.addEventListener("mouseover", (event) => {
+    event.target.classList.toggle("hover");
+})
+
+keypad.addEventListener("mouseout", (event) => {
+    event.target.classList.toggle("hover");
+})
+
+keypad.addEventListener("mousedown", (event) => {
+    event.target.classList.toggle("mousedown");
+})
+
+keypad.addEventListener("mouseup", (event) => {
+    event.target.classList.toggle("mousedown");
+})
+
+
+
+
+// To Do:
+// - round decimals to 2 places
+// - create a way for multi-digit numbers (concat or arrays?)
+// - allow chaining operations (e.g., 12 + 7 - 5 = 14)
+// - show all the operation on the display
+// - what to do if press = early? 
+//     - single number = single number
+//     - number and operator = nothing?
+//     - both numbers and operator = keep operating the result by the second number
+// - snarky response if tries to divide by 0
+
+// EXTRA CREDIT:
+// - add in decimal button (that is disabled if already used once in a number)
+// - add backspace button
+// - add keyboard support
