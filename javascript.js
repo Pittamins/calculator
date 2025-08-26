@@ -61,18 +61,34 @@ const clear = document.querySelector("#clear");
 const keypad = document.querySelector(".keypad");
 
 addition.addEventListener("click", () => {
+    if (operator !== "" && secondNum !== "") {
+        firstNum = calculate(operator, firstNum, secondNum);
+        secondNum = "";
+    } 
     display.textContent = firstNum + " +";
     operator = "+";
 });
 subtraction.addEventListener("click", () => {
+    if (operator !== "" && secondNum !== "") {
+        firstNum = calculate(operator, firstNum, secondNum);
+        secondNum = "";
+    }
     display.textContent = firstNum + " -";
     operator = "-";
 });
 multiplication.addEventListener("click", () => {
+    if (operator !== "" && secondNum !== "") {
+        firstNum = calculate(operator, firstNum, secondNum);
+        secondNum = "";
+    }
     display.textContent = firstNum + " x";
     operator = "x";
 });
 division.addEventListener("click", () => {
+    if (operator !== "" && secondNum !== "") {
+        firstNum = calculate(operator, firstNum, secondNum);
+        secondNum = "";
+    }
     display.textContent = firstNum + " /";
     operator = "/";
 });
@@ -173,6 +189,7 @@ equals.addEventListener("click", () => {
     display.textContent = answer;
     firstNum = answer;
     secondNum = "";
+    operator = ""
     console.log(`firstNum type: ${typeof firstNum}, firstNum value: ${firstNum}`);
     console.log(`secondNum type: ${typeof secondNum}, secondNum value: ${secondNum}`);
     console.log(`typeof operator = ${typeof operator}`);
@@ -208,8 +225,7 @@ keypad.addEventListener("mouseup", (event) => {
 
 // To Do:
 // - round decimals to 2 places
-// - allow chaining operations (e.g., 12 + 7 - 5 = 14)
-// - what to do if press = early? 
+// - what to do if press = early? (if statements on the calculate function)
 //     - single number = single number
 //     - number and operator = nothing?
 //     - both numbers and operator = keep operating the result by the second number
