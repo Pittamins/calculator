@@ -29,11 +29,13 @@ function calculate(operator, firstNum, secondNum) {
         answer = multiply(firstNum, secondNum);
     } else if (operator === "/") {
         answer = divide(firstNum, secondNum);
+    } else if (operator === "") {
+        answer = firstNum;
     }
     // I tried writing this as a switch statement, but couldn't get it to work right
     // I think I must have had the syntax wrong
     console.log(`answer = ${answer}`);
-    return answer;
+    return Math.round(answer * 100) / 100;
 }
 
 const one = document.querySelector("#one");
@@ -185,11 +187,18 @@ zero.addEventListener("click", () => {
 });
 
 equals.addEventListener("click", () => {
-    const answer = calculate(operator, firstNum, secondNum);
-    display.textContent = answer;
-    firstNum = answer;
-    secondNum = "";
-    operator = ""
+    if (operator === "/" && firstNum !== "" && secondNum === 0) {
+        display.textContent = "No dividing by zero!"; 
+        console.log(`first num = ${firstNum}, secondNum = ${secondNum}, operator = ${operator}`)
+    } else if (operator !== "" && firstNum !== "" && secondNum !== "") {
+        const answer = Math.round((calculate(operator, firstNum, secondNum)) * 100) / 100;
+        display.textContent = answer;
+        firstNum = answer;
+        secondNum = "";
+        operator = ""
+    } else if (operator !== "" && secondNum === "") {
+        return;
+    }
     console.log(`firstNum type: ${typeof firstNum}, firstNum value: ${firstNum}`);
     console.log(`secondNum type: ${typeof secondNum}, secondNum value: ${secondNum}`);
     console.log(`typeof operator = ${typeof operator}`);
@@ -224,11 +233,6 @@ keypad.addEventListener("mouseup", (event) => {
 
 
 // To Do:
-// - round decimals to 2 places
-// - what to do if press = early? (if statements on the calculate function)
-//     - single number = single number
-//     - number and operator = nothing?
-//     - both numbers and operator = keep operating the result by the second number
 // - snarky response if tries to divide by 0
 
 // EXTRA CREDIT:
