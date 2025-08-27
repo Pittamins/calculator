@@ -67,6 +67,10 @@ function clickOperator(sign) {
         secondNum = "";
         display.textContent = firstNum + ` ${sign}`;
         operator = `${sign}`;
+    } else if (sign === "-" && operator === "" && 
+        (firstNum === "" || firstNum === 0)) {
+            firstNum = `${sign}`;
+            display.textContent = `${sign}`;
     } else if (operator === "" && (firstNum === "" || firstNum === 0)) {
         firstNum = 0
         display.textContent = firstNum + ` ${sign}`;
@@ -143,8 +147,8 @@ equals.addEventListener("click", () => {
 })
 
 clear.addEventListener("click", () => {
-    firstNum = 0;
-    secondNum = 0;
+    firstNum = "";
+    secondNum = "";
     operator = "";
     display.textContent = "0";
 })
@@ -200,4 +204,6 @@ backButton.addEventListener("click", () => {
 //  - Then filter to only allow numbers, the decimal, and the operators to input
 //      - Maybe I can have addeventlistener for keypress on the numbers/operators, then target which key was hit and take the value from target.key or whatever?
 //  - create functions for enter (return), backspace (delete), clear (?)
+//      - just use the same functions that you have for the buttons, but move those to independent functions and use callbacks in the eventlisteners
 //  - Will I have to copy/paste the code from current events to the new ones, or is there a way to integrate?
+//  - Maybe I have to add or remove from the value of the input on a button click? Like what I did for the .textcontent?
