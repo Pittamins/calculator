@@ -1,19 +1,3 @@
-function add(a, b) {
-    return a + b;
-}
-
-function subtract(a, b) {
-    return a - b;
-}
-
-function multiply(a, b) {
-    return a * b;
-}
-
-function divide(a, b) {
-    return a / b;
-}
-
 let firstNum = "";
 let secondNum = "";
 let operator = "";
@@ -22,13 +6,13 @@ function calculate(operator, firstNum, secondNum) {
     console.log(operator);
     let answer = 0;
     if (operator === "+") {
-        answer = add(firstNum, secondNum);
+        answer = firstNum + secondNum;
     } else if (operator === "-") {
-        answer = subtract(firstNum, secondNum);   
+        answer = firstNum - secondNum;   
     } else if (operator === "x") {
-        answer = multiply(firstNum, secondNum);
+        answer = firstNum * secondNum;
     } else if (operator === "/") {
-        answer = divide(firstNum, secondNum);
+        answer = firstNum / secondNum;
     } else if (operator === "") {
         answer = firstNum;
     }
@@ -66,180 +50,53 @@ const backButton = document.querySelector("#backspace");
 
 const keypad = document.querySelector(".keypad");
 
-addition.addEventListener("click", () => {
-    if (operator === "/" && firstNum !== "" && secondNum === 0) {
-        display.textContent = "No dividing by zero!"; 
-        console.log(`first num = ${firstNum}, secondNum = ${secondNum}, operator = ${operator}`)
-        firstNum = "";
-        secondNum = "";
-        operator = "";
-    } else if (operator !== "" && secondNum !== "") {
-        firstNum = calculate(operator, firstNum, secondNum);
-        secondNum = "";
-        display.textContent = firstNum + " +";
-        operator = "+";
-    } else if (operator === "" && (firstNum === "" || firstNum === 0)) {
-        firstNum = 0
-        display.textContent = firstNum + " +";
-        operator = "+";
-    } else {
-        display.textContent = firstNum + " +";
-        operator = "+";
-    }
-});
-subtraction.addEventListener("click", () => {
-    if (operator === "/" && firstNum !== "" && secondNum === 0) {
-        display.textContent = "No dividing by zero!"; 
-        console.log(`first num = ${firstNum}, secondNum = ${secondNum}, operator = ${operator}`)
-        firstNum = "";
-        secondNum = "";
-        operator = "";
-    } else if (operator !== "" && secondNum !== "") {
-        firstNum = calculate(operator, firstNum, secondNum);
-        secondNum = "";
-        display.textContent = firstNum + " -";
-        operator = "-";
-    } else if (operator === "" && (firstNum === "" || firstNum === 0)) {
-        display.textContent = "-";
-        firstNum = "-";
-    } else {
-        display.textContent = firstNum + " -";
-        operator = "-";
-    }
-});
-multiplication.addEventListener("click", () => {
-    if (operator === "/" && firstNum !== "" && secondNum === 0) {
-        display.textContent = "No dividing by zero!"; 
-        console.log(`first num = ${firstNum}, secondNum = ${secondNum}, operator = ${operator}`)
-        firstNum = "";
-        secondNum = "";
-        operator = "";
-    } else if (operator !== "" && secondNum !== "") {
-        firstNum = calculate(operator, firstNum, secondNum);
-        secondNum = "";
-        display.textContent = firstNum + " x";
-        operator = "x";
-    } else if (operator === "" && (firstNum === "" || firstNum === 0)) {
-        firstNum = 0
-        display.textContent = firstNum + " x";
-        operator = "x";
-    } else {
-        display.textContent = firstNum + " x";
-        operator = "x";
-    }
-});
-division.addEventListener("click", () => {
-    if (operator === "/" && firstNum !== "" && secondNum === 0) {
-        display.textContent = "No dividing by zero!"; 
-        console.log(`first num = ${firstNum}, secondNum = ${secondNum}, operator = ${operator}`)
-        firstNum = "";
-        secondNum = "";
-        operator = "";
-    } else if (operator !== "" && secondNum !== "") {
-        firstNum = calculate(operator, firstNum, secondNum);
-        secondNum = "";
-        display.textContent = firstNum + " /";
-        operator = "/";
-    } else if (operator === "" && (firstNum === "" || firstNum === 0)) {
-        firstNum = 0
-        display.textContent = firstNum + " /";
-        operator = "/";
-    } else {
-        display.textContent = firstNum + " /";
-        operator = "/";
-    }
-});
+addition.addEventListener("click", () => clickOperator("+"));
+subtraction.addEventListener("click", () => clickOperator("-"));
+multiplication.addEventListener("click", () => clickOperator("x"));
+division.addEventListener("click", () => clickOperator("/"));
 
-one.addEventListener("click", () => {
-    if (operator === "") {
-        firstNum = firstNum + "1";
+function clickOperator(sign) {
+    if (operator === "/" && firstNum !== "" && secondNum === 0) {
+        display.textContent = "No dividing by zero!"; 
+        console.log(`first num = ${firstNum}, secondNum = ${secondNum}, operator = ${operator}`)
+        firstNum = "";
+        secondNum = "";
+        operator = "";
+    } else if (operator !== "" && secondNum !== "") {
+        firstNum = calculate(operator, firstNum, secondNum);
+        secondNum = "";
+        display.textContent = firstNum + ` ${sign}`;
+        operator = `${sign}`;
+    } else if (operator === "" && (firstNum === "" || firstNum === 0)) {
+        firstNum = 0
+        display.textContent = firstNum + ` ${sign}`;
+        operator = `${sign}`;
+    } else {
+        display.textContent = firstNum + ` ${sign}`;
+        operator = `${sign}`;
+    };
+};
+
+one.addEventListener("click", () => clickNumber(1));
+two.addEventListener("click", () => clickNumber(2));
+three.addEventListener("click", () => clickNumber(3));
+four.addEventListener("click", () => clickNumber(4));
+five.addEventListener("click", () => clickNumber(5));
+six.addEventListener("click", () => clickNumber(6));
+seven.addEventListener("click", () => clickNumber(7));
+eight.addEventListener("click", () => clickNumber(8));
+nine.addEventListener("click", () => clickNumber(9));
+zero.addEventListener("click", () => clickNumber(0));
+
+function clickNumber(num) {
+        if (operator === "") {
+        firstNum = firstNum + `${num}`;
         display.textContent = firstNum;
     } else {
-        secondNum = secondNum + "1";
+        secondNum = secondNum + `${num}`;
         display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
-});
-two.addEventListener("click", () => {
-    if (operator === "") {
-        firstNum = firstNum + "2";
-        display.textContent = firstNum;
-    } else {
-        secondNum = secondNum + "2";
-        display.textContent = firstNum + ` ${operator} ` + secondNum;
-    }
-});
-three.addEventListener("click", () => {
-    if (operator === "") {
-        firstNum = firstNum + "3";
-        display.textContent = firstNum;
-    } else {
-        secondNum = secondNum + "3";
-        display.textContent = firstNum + ` ${operator} ` + secondNum;
-    }
-});
-four.addEventListener("click", () => {
-    if (operator === "") {
-        firstNum = firstNum + "4";
-        display.textContent = firstNum;
-    } else {
-        secondNum = secondNum + "4";
-        display.textContent = firstNum + ` ${operator} ` + secondNum;
-    }
-});
-five.addEventListener("click", () => {
-    if (operator === "") {
-        firstNum = firstNum + "5";
-        display.textContent = firstNum;
-    } else {
-        secondNum = secondNum + "5";
-        display.textContent = firstNum + ` ${operator} ` + secondNum;
-    }
-});
-six.addEventListener("click", () => {
-    if (operator === "") {
-        firstNum = firstNum + "6";
-        display.textContent = firstNum;
-    } else {
-        secondNum = secondNum + "6";
-        display.textContent = firstNum + ` ${operator} ` + secondNum;
-    }
-});
-seven.addEventListener("click", () => {
-    if (operator === "") {
-        firstNum = firstNum + "7";
-        display.textContent = firstNum;
-    } else {
-        secondNum = secondNum + "7";
-        display.textContent = firstNum + ` ${operator} ` + secondNum;
-    }
-});
-eight.addEventListener("click", () => {
-    if (operator === "") {
-        firstNum = firstNum + "8";
-        display.textContent = firstNum;
-    } else {
-        secondNum = secondNum + "8";
-        display.textContent = firstNum + ` ${operator} ` + secondNum;
-    }
-});
-nine.addEventListener("click", () => {
-    if (operator === "") {
-        firstNum = firstNum + "9";
-        display.textContent = firstNum;
-    } else {
-        secondNum = secondNum + "9";
-        display.textContent = firstNum + ` ${operator} ` + secondNum;
-    }
-});
-zero.addEventListener("click", () => {
-    if (operator === "") {
-        firstNum = firstNum + "0";
-        display.textContent = firstNum;
-    } else {
-        secondNum = secondNum + "0";
-        display.textContent = firstNum + ` ${operator} ` + secondNum;
-    }
-});
+}
 
 decimal.addEventListener("click", () => {
     if (!operator) {
@@ -338,6 +195,9 @@ backButton.addEventListener("click", () => {
 // To Do:
 
 // EXTRA CREDIT:
-// - add in decimal button (that is disabled if already used once in a number)
-// - add backspace button
 // - add keyboard support
+//  - Maybe change the display to an input so you can enter text
+//  - Then filter to only allow numbers, the decimal, and the operators to input
+//      - Maybe I can have addeventlistener for keypress on the numbers/operators, then target which key was hit and take the value from target.key or whatever?
+//  - create functions for enter (return), backspace (delete), clear (?)
+//  - Will I have to copy/paste the code from current events to the new ones, or is there a way to integrate?
