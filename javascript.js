@@ -49,6 +49,8 @@ const eight = document.querySelector("#eight");
 const nine = document.querySelector("#nine");
 const zero = document.querySelector("#zero");
 
+const decimal = document.querySelector("#decimal"); 
+
 const addition = document.querySelector("#addition");
 const subtraction = document.querySelector("#subtraction");
 const multiplication = document.querySelector("#multiplication");
@@ -59,6 +61,8 @@ const equals = document.querySelector("#equals");
 const display = document.querySelector(".display");
 
 const clear = document.querySelector("#clear");
+
+const backButton = document.querySelector("#backspace");
 
 const keypad = document.querySelector(".keypad");
 
@@ -148,94 +152,112 @@ division.addEventListener("click", () => {
 
 one.addEventListener("click", () => {
     if (operator === "") {
-        firstNum = parseInt(firstNum + "1");
+        firstNum = parseFloat(firstNum + "1");
         display.textContent = firstNum;
     } else {
-        secondNum = parseInt(secondNum + "1");
+        secondNum = parseFloat(secondNum + "1");
         display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 two.addEventListener("click", () => {
     if (operator === "") {
-        firstNum = parseInt(firstNum + "2");
+        firstNum = parseFloat(firstNum + "2");
         display.textContent = firstNum;
     } else {
-        secondNum = parseInt(secondNum + "2");
+        secondNum = parseFloat(secondNum + "2");
         display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 three.addEventListener("click", () => {
     if (operator === "") {
-        firstNum = parseInt(firstNum + "3");
+        firstNum = parseFloat(firstNum + "3");
         display.textContent = firstNum;
     } else {
-        secondNum = parseInt(secondNum + "3");
+        secondNum = parseFloat(secondNum + "3");
         display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 four.addEventListener("click", () => {
     if (operator === "") {
-        firstNum = parseInt(firstNum + "4");
+        firstNum = parseFloat(firstNum + "4");
         display.textContent = firstNum;
     } else {
-        secondNum = parseInt(secondNum + "4");
+        secondNum = parseFloat(secondNum + "4");
         display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 five.addEventListener("click", () => {
     if (operator === "") {
-        firstNum = parseInt(firstNum + "5");
+        firstNum = parseFloat(firstNum + "5");
         display.textContent = firstNum;
     } else {
-        secondNum = parseInt(secondNum + "5");
+        secondNum = parseFloat(secondNum + "5");
         display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 six.addEventListener("click", () => {
     if (operator === "") {
-        firstNum = parseInt(firstNum + "6");
+        firstNum = parseFloat(firstNum + "6");
         display.textContent = firstNum;
     } else {
-        secondNum = parseInt(secondNum + "6");
+        secondNum = parseFloat(secondNum + "6");
         display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 seven.addEventListener("click", () => {
     if (operator === "") {
-        firstNum = parseInt(firstNum + "7");
+        firstNum = parseFloat(firstNum + "7");
         display.textContent = firstNum;
     } else {
-        secondNum = parseInt(secondNum + "7");
+        secondNum = parseFloat(secondNum + "7");
         display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 eight.addEventListener("click", () => {
     if (operator === "") {
-        firstNum = parseInt(firstNum + "8");
+        firstNum = parseFloat(firstNum + "8");
         display.textContent = firstNum;
     } else {
-        secondNum = parseInt(secondNum + "8");
+        secondNum = parseFloat(secondNum + "8");
         display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 nine.addEventListener("click", () => {
     if (operator === "") {
-        firstNum = parseInt(firstNum + "9");
+        firstNum = parseFloat(firstNum + "9");
         display.textContent = firstNum;
     } else {
-        secondNum = parseInt(secondNum + "9");
+        secondNum = parseFloat(secondNum + "9");
         display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 zero.addEventListener("click", () => {
     if (operator === "") {
-        firstNum = parseInt(firstNum + "0");
+        firstNum = parseFloat(firstNum + "0");
         display.textContent = firstNum;
     } else {
-        secondNum = parseInt(secondNum + "0");
+        secondNum = parseFloat(secondNum + "0");
         display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
+
+decimal.addEventListener("click", () => {
+    if (!operator) {
+        if (firstNum.toString().split("").includes(".")) {
+            return;
+        } else {
+        firstNum = firstNum + ".";
+        display.textContent = firstNum;
+        };
+    } else {
+        if (secondNum.toString().split("").includes(".")) {
+            return;
+        } else {
+        secondNum = secondNum + ".";
+        display.textContent = firstNum + ` ${operator} ` + secondNum;
+        };
+    }
+})
 
 equals.addEventListener("click", () => {
     if (operator === "/" && firstNum !== "" && secondNum === 0) {
@@ -286,7 +308,35 @@ keypad.addEventListener("mouseup", (event) => {
     event.target.classList.toggle("mousedown");
 })
 
+backButton.addEventListener("click", () => {
+    if (secondNum.toString().length > 1) {
+        secondNum = secondNum.toString().split("");
+        secondNum.pop();
+        secondNum = parseFloat(secondNum.join(""));        
+        display.textContent = firstNum + ` ${operator} ` + secondNum;
+    } else if (secondNum.toString().length === 1) {
+        secondNum = "";
+        display.textContent = firstNum + " " + operator;
+    } else if (!secondNum && operator) {
+        operator = "";
+        display.textContent = firstNum;
+    } else if (!secondNum && !operator && firstNum.toString().length > 2) {
+        firstNum = firstNum.toString().split("");
+        firstNum.pop();
+        firstNum = parseFloat(firstNum.join(""));        
+        display.textContent = firstNum;
+    } else if (!secondNum &&
+        !operator &&
+        firstNum.toString().length === 2 &&
+        firstNum.toString().charAt(0) === "-") {
+            display.textContent = "-";
+            firstNum = "-";
+    } 
+})
 
+// To Do:
+// - How to add zeroes after a decimal
+// - if I have a number like 23.5 and I use the back button once, it turns to 23 instead of 23. -- how to fix?
 
 // EXTRA CREDIT:
 // - add in decimal button (that is disabled if already used once in a number)

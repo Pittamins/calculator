@@ -51,8 +51,9 @@
     margin: auto;
 }
 
-#equals {
-    flex-grow: 1;
+.deletion {
+    display: flex;
+    width: 400px;
 }
 
 .clear {
