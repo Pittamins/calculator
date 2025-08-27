@@ -63,36 +63,87 @@ const clear = document.querySelector("#clear");
 const keypad = document.querySelector(".keypad");
 
 addition.addEventListener("click", () => {
-    if (operator !== "" && secondNum !== "") {
+    if (operator === "/" && firstNum !== "" && secondNum === 0) {
+        display.textContent = "No dividing by zero!"; 
+        console.log(`first num = ${firstNum}, secondNum = ${secondNum}, operator = ${operator}`)
+        firstNum = "";
+        secondNum = "";
+        operator = "";
+    } else if (operator !== "" && secondNum !== "") {
         firstNum = calculate(operator, firstNum, secondNum);
         secondNum = "";
-    } 
-    display.textContent = firstNum + " +";
-    operator = "+";
+        display.textContent = firstNum + " +";
+        operator = "+";
+    } else if (operator === "" && (firstNum === "" || firstNum === 0)) {
+        firstNum = 0
+        display.textContent = firstNum + " +";
+        operator = "+";
+    } else {
+        display.textContent = firstNum + " +";
+        operator = "+";
+    }
 });
 subtraction.addEventListener("click", () => {
-    if (operator !== "" && secondNum !== "") {
+    if (operator === "/" && firstNum !== "" && secondNum === 0) {
+        display.textContent = "No dividing by zero!"; 
+        console.log(`first num = ${firstNum}, secondNum = ${secondNum}, operator = ${operator}`)
+        firstNum = "";
+        secondNum = "";
+        operator = "";
+    } else if (operator !== "" && secondNum !== "") {
         firstNum = calculate(operator, firstNum, secondNum);
         secondNum = "";
+        display.textContent = firstNum + " -";
+        operator = "-";
+    } else if (operator === "" && (firstNum === "" || firstNum === 0)) {
+        display.textContent = "-";
+        firstNum = "-";
+    } else {
+        display.textContent = firstNum + " -";
+        operator = "-";
     }
-    display.textContent = firstNum + " -";
-    operator = "-";
 });
 multiplication.addEventListener("click", () => {
-    if (operator !== "" && secondNum !== "") {
+    if (operator === "/" && firstNum !== "" && secondNum === 0) {
+        display.textContent = "No dividing by zero!"; 
+        console.log(`first num = ${firstNum}, secondNum = ${secondNum}, operator = ${operator}`)
+        firstNum = "";
+        secondNum = "";
+        operator = "";
+    } else if (operator !== "" && secondNum !== "") {
         firstNum = calculate(operator, firstNum, secondNum);
         secondNum = "";
+        display.textContent = firstNum + " x";
+        operator = "x";
+    } else if (operator === "" && (firstNum === "" || firstNum === 0)) {
+        firstNum = 0
+        display.textContent = firstNum + " x";
+        operator = "x";
+    } else {
+        display.textContent = firstNum + " x";
+        operator = "x";
     }
-    display.textContent = firstNum + " x";
-    operator = "x";
 });
 division.addEventListener("click", () => {
-    if (operator !== "" && secondNum !== "") {
+    if (operator === "/" && firstNum !== "" && secondNum === 0) {
+        display.textContent = "No dividing by zero!"; 
+        console.log(`first num = ${firstNum}, secondNum = ${secondNum}, operator = ${operator}`)
+        firstNum = "";
+        secondNum = "";
+        operator = "";
+    } else if (operator !== "" && secondNum !== "") {
         firstNum = calculate(operator, firstNum, secondNum);
         secondNum = "";
+        display.textContent = firstNum + " /";
+        operator = "/";
+    } else if (operator === "" && (firstNum === "" || firstNum === 0)) {
+        firstNum = 0
+        display.textContent = firstNum + " /";
+        operator = "/";
+    } else {
+        display.textContent = firstNum + " /";
+        operator = "/";
     }
-    display.textContent = firstNum + " /";
-    operator = "/";
 });
 
 one.addEventListener("click", () => {
@@ -190,6 +241,9 @@ equals.addEventListener("click", () => {
     if (operator === "/" && firstNum !== "" && secondNum === 0) {
         display.textContent = "No dividing by zero!"; 
         console.log(`first num = ${firstNum}, secondNum = ${secondNum}, operator = ${operator}`)
+        firstNum = "";
+        secondNum = "";
+        operator = "";
     } else if (operator !== "" && firstNum !== "" && secondNum !== "") {
         const answer = Math.round((calculate(operator, firstNum, secondNum)) * 100) / 100;
         display.textContent = answer;
@@ -202,6 +256,9 @@ equals.addEventListener("click", () => {
     console.log(`firstNum type: ${typeof firstNum}, firstNum value: ${firstNum}`);
     console.log(`secondNum type: ${typeof secondNum}, secondNum value: ${secondNum}`);
     console.log(`typeof operator = ${typeof operator}`);
+    firstNum = "";
+    secondNum = "";
+    operator = "";
 })
 
 clear.addEventListener("click", () => {
@@ -230,10 +287,6 @@ keypad.addEventListener("mouseup", (event) => {
 })
 
 
-
-
-// To Do:
-// - snarky response if tries to divide by 0
 
 // EXTRA CREDIT:
 // - add in decimal button (that is disabled if already used once in a number)
