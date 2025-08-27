@@ -152,91 +152,91 @@ division.addEventListener("click", () => {
 
 one.addEventListener("click", () => {
     if (operator === "") {
-        firstNum = parseFloat(firstNum + "1");
+        firstNum = firstNum + "1";
         display.textContent = firstNum;
     } else {
-        secondNum = parseFloat(secondNum + "1");
+        secondNum = secondNum + "1";
         display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 two.addEventListener("click", () => {
     if (operator === "") {
-        firstNum = parseFloat(firstNum + "2");
+        firstNum = firstNum + "2";
         display.textContent = firstNum;
     } else {
-        secondNum = parseFloat(secondNum + "2");
+        secondNum = secondNum + "2";
         display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 three.addEventListener("click", () => {
     if (operator === "") {
-        firstNum = parseFloat(firstNum + "3");
+        firstNum = firstNum + "3";
         display.textContent = firstNum;
     } else {
-        secondNum = parseFloat(secondNum + "3");
+        secondNum = secondNum + "3";
         display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 four.addEventListener("click", () => {
     if (operator === "") {
-        firstNum = parseFloat(firstNum + "4");
+        firstNum = firstNum + "4";
         display.textContent = firstNum;
     } else {
-        secondNum = parseFloat(secondNum + "4");
+        secondNum = secondNum + "4";
         display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 five.addEventListener("click", () => {
     if (operator === "") {
-        firstNum = parseFloat(firstNum + "5");
+        firstNum = firstNum + "5";
         display.textContent = firstNum;
     } else {
-        secondNum = parseFloat(secondNum + "5");
+        secondNum = secondNum + "5";
         display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 six.addEventListener("click", () => {
     if (operator === "") {
-        firstNum = parseFloat(firstNum + "6");
+        firstNum = firstNum + "6";
         display.textContent = firstNum;
     } else {
-        secondNum = parseFloat(secondNum + "6");
+        secondNum = secondNum + "6";
         display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 seven.addEventListener("click", () => {
     if (operator === "") {
-        firstNum = parseFloat(firstNum + "7");
+        firstNum = firstNum + "7";
         display.textContent = firstNum;
     } else {
-        secondNum = parseFloat(secondNum + "7");
+        secondNum = secondNum + "7";
         display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 eight.addEventListener("click", () => {
     if (operator === "") {
-        firstNum = parseFloat(firstNum + "8");
+        firstNum = firstNum + "8";
         display.textContent = firstNum;
     } else {
-        secondNum = parseFloat(secondNum + "8");
+        secondNum = secondNum + "8";
         display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 nine.addEventListener("click", () => {
     if (operator === "") {
-        firstNum = parseFloat(firstNum + "9");
+        firstNum = firstNum + "9";
         display.textContent = firstNum;
     } else {
-        secondNum = parseFloat(secondNum + "9");
+        secondNum = secondNum + "9";
         display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
 zero.addEventListener("click", () => {
     if (operator === "") {
-        firstNum = parseFloat(firstNum + "0");
+        firstNum = firstNum + "0";
         display.textContent = firstNum;
     } else {
-        secondNum = parseFloat(secondNum + "0");
+        secondNum = secondNum + "0";
         display.textContent = firstNum + ` ${operator} ` + secondNum;
     }
 });
@@ -257,6 +257,8 @@ decimal.addEventListener("click", () => {
         display.textContent = firstNum + ` ${operator} ` + secondNum;
         };
     }
+    console.log(`firstNum after decimal button press ${firstNum}`)
+    console.log(typeof firstNum)
 })
 
 equals.addEventListener("click", () => {
@@ -312,7 +314,7 @@ backButton.addEventListener("click", () => {
     if (secondNum.toString().length > 1) {
         secondNum = secondNum.toString().split("");
         secondNum.pop();
-        secondNum = parseFloat(secondNum.join(""));        
+        secondNum = secondNum.join("");        
         display.textContent = firstNum + ` ${operator} ` + secondNum;
     } else if (secondNum.toString().length === 1) {
         secondNum = "";
@@ -320,23 +322,20 @@ backButton.addEventListener("click", () => {
     } else if (!secondNum && operator) {
         operator = "";
         display.textContent = firstNum;
-    } else if (!secondNum && !operator && firstNum.toString().length > 2) {
+    } else if (!secondNum && !operator && firstNum.toString().length > 1) {
         firstNum = firstNum.toString().split("");
         firstNum.pop();
-        firstNum = parseFloat(firstNum.join(""));        
+        firstNum = firstNum.join("");        
         display.textContent = firstNum;
     } else if (!secondNum &&
         !operator &&
-        firstNum.toString().length === 2 &&
-        firstNum.toString().charAt(0) === "-") {
-            display.textContent = "-";
-            firstNum = "-";
+        firstNum.toString().length === 1) {
+            display.textContent = "0";
+            firstNum = "";
     } 
 })
 
 // To Do:
-// - How to add zeroes after a decimal
-// - if I have a number like 23.5 and I use the back button once, it turns to 23 instead of 23. -- how to fix?
 
 // EXTRA CREDIT:
 // - add in decimal button (that is disabled if already used once in a number)
