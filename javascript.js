@@ -6,7 +6,7 @@ function calculate(operator, firstNum, secondNum) {
     console.log(operator);
     let answer = 0;
     if (operator === "+") {
-        answer = firstNum + secondNum;
+        answer = Number(firstNum) + Number(secondNum);
     } else if (operator === "-") {
         answer = firstNum - secondNum;   
     } else if (operator === "x") {
@@ -16,6 +16,8 @@ function calculate(operator, firstNum, secondNum) {
     } else if (operator === "") {
         answer = firstNum;
     }
+        console.log(`firstNum type: ${typeof firstNum}, firstNum value: ${firstNum}`);
+    console.log(`secondNum type: ${typeof secondNum}, secondNum value: ${secondNum}`);
     // I tried writing this as a switch statement, but couldn't get it to work right
     // I think I must have had the syntax wrong
     console.log(`answer = ${answer}`);
